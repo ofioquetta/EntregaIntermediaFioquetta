@@ -1,0 +1,31 @@
+{% extends "Taller/maestro.html" %}
+
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">RESULTADOS DE LA BUSQUEDA</h1>
+{% endblock %}
+
+
+
+{% block contenido_que_cambia %}
+
+{% if clientes %}
+<ul>
+    {% for cliente in clientes %}
+        <li>{{cliente.nombre}}</li>
+        <li>{{cliente.apellido}}</li>
+        <li>{{cliente.direccion}}</li>
+        <li>{{cliente.numero}}</li>
+        <br>
+    {% endfor %}
+</ul>
+
+{% else %}
+
+<p> NO HAY CLIENTES CON ESA LISTA!</p>
+
+{% endif %}
+
+{% endblock %}

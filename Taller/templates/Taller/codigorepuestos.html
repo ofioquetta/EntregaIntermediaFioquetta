@@ -1,0 +1,24 @@
+{% extends "Taller/maestro.html" %}
+
+{% load static %}
+
+{% block titulo %}
+<h1 class="mb-5">VIENE DE REPUESTOS</h1>
+{% endblock %}
+
+{% block contenido_que_cambia %}
+
+<form action="{% url 'codigorepuestos' %}" method="POST"> {% csrf_token %}
+
+    <table>
+    
+        {{ form.as_table }}
+    
+    </table>
+    
+    <input type="submit" value="ENVIAR REPUESTO">
+    
+    
+    </form>
+
+{% endblock %}
