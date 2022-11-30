@@ -3,12 +3,14 @@ from django.urls import path
 from Taller.views import *
 
 urlpatterns = [
-    path("cliente/", cliente, name="cliente"),
+    path("cliente/", clientes, name="cliente"),
     path("clientes/", clientes, name="clientes"),
-    path("provvedores/", proveedores, name="proveedores"),
+    path("proveedores/", proveedores, name="proveedores"),
     path("codigorepuestos/", codigorepuestos, name="codigorepuestos"),
     path("", inicio, name="inicio"),
     path("clienteFormulario/", clienteFormulario, name="clienteFormulario"),
-    path("busquedaapellido/", busquedaapellido, name="busquedaapeliido"),
+    path("busqueda/", busqueda, name="busqueda"),
     path("buscar/", buscar, name="buscar"),
+    path("resultadosBusqueda/", buscar, name="resultadosBusqueda"),
+    path("listadeclientes/", listadeclientes, name="listadeclientes"),
 ]

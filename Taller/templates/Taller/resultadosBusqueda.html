@@ -1,10 +1,29 @@
-{% extends "Taller/maestro.html" %}
+{% extends "Taller/clientes.html" %}
 
 {% load static %}
 
 
 {% block titulo %}
 <h1 class="mb-5">RESULTADOS DE LA BUSQUEDA</h1>
+
+
+{% if clientes %}
+<ul>
+    {% for cliente in clientes %}
+        <li>Nombre:{{cliente.nombre}}</li>
+        <li>Apellido:{{cliente.apellido}}</li>
+        <li>Direccion:{{cliente.direccion}}</li>
+        <li>Numero de Telefono:{{cliente.numero}}</li>
+        <br>
+    {% endfor %}
+</ul>
+
+{% else %}
+
+<p> NO HAY CLIENTES CARGADOS CON ESE APELLIDO!</p>
+
+{% endif %}
+
 {% endblock %}
 
 

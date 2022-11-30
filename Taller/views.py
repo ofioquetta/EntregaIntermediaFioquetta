@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse 
 from Taller.forms import ClienteForm, CodigorepuestoForm
 from Taller.models import Clientes, Codigorepuestos
+from django.template import Template, Context, loader
 
 
 
@@ -11,8 +12,12 @@ def cliente(request):
     cliente1=Clientes(nombre="Esteban",apellido="Fernandez",direccion="Argumedo 3550",numero=1345465)
     
     cliente.save()
-    cadena_Texto="cliente guardado: "+cliente1.nombre +" "+str(cliente1.apellido)+" "+str(cliente1.direccion)+" "+str(cliente1.numero)
+
+    cadena_Texto="cliente guardado: "+cliente1.nombre+" "+str(cliente1.apellido)+" "+cliente1.direccion+" "+str(cliente1.numero)
     return HttpResponse(cadena_Texto)
+
+    
+    
      
 
 def inicio(request):
@@ -21,8 +26,16 @@ def inicio(request):
     return render (request, "Taller/inicio.html")
 
 
+   
+   
+
+        
+
+
 def clientes(request):
     return render (request, "Taller/clientes.html")
+
+
 
 def proveedores(request):
     return render (request, "Taller/proveedores.html")
@@ -37,7 +50,7 @@ def codigorepuestos(request):
             uso=informacion["uso"]
             descripcion=informacion["descripcion"]
             
-            repuesto= Codigorepuestos(numero=numero, uso=uso, descripcion=descripcion)
+            repuesto=Codigorepuestos(numero=numero, uso=uso, descripcion=descripcion)
             repuesto.save()
             return render (request, "Taller/inicio.html", {"mensaje": "Repuesto esta creado correctamente!!"})
     else:
@@ -69,8 +82,8 @@ def clienteFormulario(request):
     return render(request, "Taller/clienteFormulario.html", {"form":formulario})
 
 
-def busquedaapellido(request):
-    return render(request, "Taller/busquedaapellido.html")
+def busqueda(request):
+    return render (request, "Taller/busqueda.html")
 
 
 def buscar(request):
@@ -82,7 +95,10 @@ def buscar(request):
         clientes=Clientes.objects.filter(apellido__icontains=apellido)
         return render(request,"Taller/resultadosBusqueda.html", {"clientes":clientes} )
     else:
-        return render(request, "Taller/busquedaapellido.html", {"mensaje":" Ingrese un apellido"})
+        return render(request, "Taller/busqueda.html", {"mensaje":" Ingrese un apellido"})
 
 
-# Create your views here.
+
+def listadeclientes(request):
+    clientes=Clientes.objects.all()
+    return render(request, "Taller/listadeclientes.html", {"clientes":clientes})
